@@ -1,6 +1,6 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 
-import CartContext from "./cart-context";
+import CartContext from './cart-context';
 
 const defaultCartState = {
   items: [],
@@ -8,30 +8,24 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === "ADD_ITEM") {
-    // concat add new item into an array and returns a new array (push updates an existing array)
+  if (action.type === 'ADD') {
     const updatedTotalAmount =
-      state.totalAmount + action.item.price + action.item.amount;
+      state.totalAmount + action.item.price * action.item.amount;
 
-    // checking if the updated item already exist on the cart list
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );
-
-    // if the new item already exist on the list, it will be added on the existing item
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
 
     if (existingCartItem) {
       const updatedItem = {
         ...existingCartItem,
-        amount: existingCartItem.amount + action.item.amount
+        amount: existingCartItem.amount + action.item.amount,
       };
       updatedItems = [...state.items];
-      // taking the old item in the array and overwritting it with a new one
-      updatedItems[existingCartItemIndex] = updatedItem
+      updatedItems[existingCartItemIndex] = updatedItem;
     } else {
-      // brand new item
       updatedItems = state.items.concat(action.item);
     }
 
@@ -40,18 +34,17 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
-  if (action.type === 'REMOVE_ITEM') {
+  if (action.type === 'REMOVE') {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     );
     const existingItem = state.items[existingCartItemIndex];
     const updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItems;
-    // if there's just 1 item, removing it from array
     if (existingItem.amount === 1) {
       updatedItems = state.items.filter(item => item.id !== action.id);
     } else {
-      const updatedItem = { ...existingItem, amount: existingItem.amount -1 };
+      const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
@@ -60,24 +53,23 @@ const cartReducer = (state, action) => {
       items: updatedItems,
       totalAmount: updatedTotalAmount
     };
-  };
+  }
 
   return defaultCartState;
 };
 
 const CartProvider = (props) => {
-  // useReducer always needs to be inside a component!
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
   );
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: "ADD_ITEM", item: item });
+    dispatchCartAction({ type: 'ADD', item: item });
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE_ITEM", id: id });
+    dispatchCartAction({ type: 'REMOVE', id: id });
   };
 
   const cartContext = {
