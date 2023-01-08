@@ -4,8 +4,6 @@ const Checkout = (props) => {
 
   const confirmHandler = () => {};
 
-  const cancelHandler = () => {};
-
   return (
     <form>
       <div className={classes.control}>
@@ -25,7 +23,7 @@ const Checkout = (props) => {
         <input type="text" id="city" />
       </div>
       {/* type="button doesn't submit the form!" */}
-      <button type="button" onClick={cancelHandler}>Cancel</button>
+      <button type="button" onClick={props.onCancel}>Cancel</button>
       <button onClick={confirmHandler}>Confirm</button>
     </form>
   )
