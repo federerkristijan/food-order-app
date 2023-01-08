@@ -12,7 +12,8 @@
 
 .MealsError {
   text-align: center;
-  color: blueviolet;
+  color: red;
+  font-size: 2rem;
 }
 
 .meals ul {

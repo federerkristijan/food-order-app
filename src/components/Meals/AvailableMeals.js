@@ -12,7 +12,7 @@ const AvailableMeals = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
-        "https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/meals.json"
+        "https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/meals"
       );
 
         if (!response.ok) {
@@ -36,6 +36,7 @@ const AvailableMeals = () => {
       setIsLoading(false);
     };
 
+    // the only way how to handle an error inside of a promise!
       fetchMeals().catch(error => {
         setIsLoading(false);
         setHttpeError(error.message);
