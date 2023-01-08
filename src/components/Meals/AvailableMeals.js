@@ -14,6 +14,11 @@ const AvailableMeals = () => {
       const response = await fetch(
         "https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/meals.json"
       );
+
+        if (!response.ok) {
+          throw new Error('Something went wrong');
+        }
+
       const responseData = await response.json();
 
       const loadedMeals = [];
@@ -31,7 +36,12 @@ const AvailableMeals = () => {
       setIsLoading(false);
     };
 
-    fetchMeals();
+    try {
+      fetchMeals();
+    } catch (error) {
+      setIsLoading(false);
+      setHttpeError(error.message);
+    }
   }, []);
 
   if (isLoading) {
