@@ -7,6 +7,7 @@ import classes from "./AvailableMeals.module.css";
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [htttpError, setHttpeError] = useState();
 
   useEffect(() => {
     const fetchMeals = async () => {
