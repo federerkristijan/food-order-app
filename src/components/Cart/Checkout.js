@@ -49,22 +49,22 @@ const Checkout = (props) => {
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
-      <div className={classes.control}>
+      <div className={`${classes.control} ${formInputsValidity.name ? '' : classes.invalid}`}>
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" ref={nameInputRef} />
         {!formInputsValidity.name && <p>Please enter a valid name!</p>}
       </div>
-      <div className={classes.control}>
+      <div className={`${classes.control} ${formInputsValidity.street ? '' : classes.invalid}`}>
         <label htmlFor="street">Your street</label>
         <input type="text" id="street" ref={streetInputRef} />
         {!formInputsValidity.street && <p> Please enter a street name!</p>}
       </div>
-      <div className={classes.control}>
+      <div className={`${classes.control} ${formInputsValidity.postalCode ? '' : classes.invalid}`}>
         <label htmlFor="postal">Postal code</label>
         <input type="text" id="postal" ref={postalInputRef} />
-        {!formInputsValidity.postalCode && <p>Postal code must have min 5 charachters </p>}
+        {!formInputsValidity.postalCode && <p>Postal code must have min 5 characters!</p>}
       </div>
-      <div className={classes.control}>
+      <div className={`${classes.control} ${formInputsValidity.city ? '' : classes.invalid}`}>
         <label htmlFor="city">Your city</label>
         <input type="text" id="city" ref={cityInputRef} />
         {!formInputsValidity.city && <p> Please enter a city name!</p>}
