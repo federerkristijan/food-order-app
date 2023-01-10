@@ -30,6 +30,7 @@ const Checkout = (props) => {
     const enteredPostalIsValid = !isEmpty(enteredPostal);
     const enteredCityIsValid = !isNotMin(enteredCity);
 
+    // assigning values to all keys
     setFormInputsValidity({
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
@@ -51,18 +52,22 @@ const Checkout = (props) => {
       <div className={classes.control}>
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" ref={nameInputRef} />
+        {!formInputsValidity.name && <p>Please enter a valid name!</p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="street">Your street</label>
         <input type="text" id="street" ref={streetInputRef} />
+        {!formInputsValidity.street && <p> Please enter a street name!</p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="postal">Postal code</label>
         <input type="text" id="postal" ref={postalInputRef} />
+        {!formInputsValidity.postalCode && <p>Postal code must have min 5 charachters </p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="city">Your city</label>
         <input type="text" id="city" ref={cityInputRef} />
+        {!formInputsValidity.city && <p> Please enter a city name!</p>}
       </div>
       <div className={classes.action}>
         {/* type="button doesn't submit the form!" */}
