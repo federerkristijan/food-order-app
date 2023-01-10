@@ -7,7 +7,7 @@ const Checkout = (props) => {
   };
 
   return (
-    <form onSubmit={confirmHandler}>
+    <form className={classes.form} onSubmit={confirmHandler}>
       <div className={classes.control}>
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" />
