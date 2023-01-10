@@ -30,9 +30,14 @@ const Checkout = (props) => {
     const enteredPostalIsValid = !isEmpty(enteredPostal);
     const enteredCityIsValid = !isNotMin(enteredCity);
 
+    setFormInputsValidity({
+      name: enteredNameIsValid,
+      street: enteredStreetIsValid,
+      city: enteredCityIsValid,
+      postalCode: enteredPostalIsValid
+    })
+
     const fromIsValid = enteredNameIsValid && enteredCityIsValid && enteredStreetIsValid && enteredPostalIsValid;
-
-
 
     if (!fromIsValid) {
       return;
