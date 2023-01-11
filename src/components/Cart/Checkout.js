@@ -12,7 +12,7 @@ const Checkout = (props) => {
     city: true,
     postalCode: true,
   });
-    
+
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const cityInputRef = useRef();
@@ -36,7 +36,7 @@ const Checkout = (props) => {
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
       city: enteredCityIsValid,
-      postalCode: enteredPostalIsValid,
+      postalCode: enteredPostalCodeIsValid,
     });
 
     const fromIsValid =
@@ -77,7 +77,7 @@ const Checkout = (props) => {
         }`}
       >
         <label htmlFor="postal">Postal code</label>
-        <input type="text" id="postal" ref={postalInputRef} />
+        <input type="text" id="postal" ref={postalCodeInputRef} />
         {!formInputsValidity.postalCode && (
           <p>Postal code must have min 5 characters!</p>
         )}
