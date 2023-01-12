@@ -22,7 +22,7 @@ const Checkout = (props) => {
   const postalCodeInputRef = useRef();
 
   const confirmHandler = (event) => {
-    event.preventdefault();
+    event.preventDefault();
 
     const enteredName = nameInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
