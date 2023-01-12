@@ -2,11 +2,8 @@ import { useRef, useState } from "react";
 
 import classes from "./Checkout.module.css";
 
-// const isValid = (value) => value.trim().length >= 1;
-// const isMin = (value) => value.trim().length >= 5;
-
-const isEmpty = (value) => value.trim() === '';
-const isFiveChars = (value) => value.trim().length === 5;
+const isValid = (value) => value.trim().length >= 1;
+const isMin = (value) => value.trim().length >= 5;
 
 const Checkout = (props) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
@@ -29,15 +26,10 @@ const Checkout = (props) => {
     const enteredCity = cityInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
 
-    // const enteredNameIsValid = isValid(enteredName);
-    // const enteredStreetIsValid = isValid(enteredStreet);
-    // const enteredCityIsValid = isValid(enteredCity);
-    // const enteredPostalCodeIsValid = isMin(enteredPostalCode);
-
-    const enteredNameIsValid = !isEmpty(enteredName);
-    const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredCityIsValid = !isEmpty(enteredCity);
-    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
+    const enteredNameIsValid = isValid(enteredName);
+    const enteredStreetIsValid = isValid(enteredStreet);
+    const enteredCityIsValid = isValid(enteredCity);
+    const enteredPostalCodeIsValid = isMin(enteredPostalCode);
 
     // assigning values to all keys
     setFormInputsValidity({
@@ -61,47 +53,38 @@ const Checkout = (props) => {
   };
 
   const nameControlClasses = `${classes.control} ${
-    formInputsValidity.name ? '' : classes.invalid
+    formInputsValidity.name ? "" : classes.invalid
   }`;
   const streetControlClasses = `${classes.control} ${
-    formInputsValidity.street ? '' : classes.invalid
+    formInputsValidity.street ? "" : classes.invalid
   }`;
   const postalCodeControlClasses = `${classes.control} ${
-    formInputsValidity.postalCode ? '' : classes.invalid
+    formInputsValidity.postalCode ? "" : classes.invalid
   }`;
   const cityControlClasses = `${classes.control} ${
-    formInputsValidity.city ? '' : classes.invalid
+    formInputsValidity.city ? "" : classes.invalid
   }`;
-
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
-      <div
-        className={nameControlClasses}
-      >
+      <div className={nameControlClasses}>
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" ref={nameInputRef} />
         {!formInputsValidity.name && <p>Please enter a valid name!</p>}
       </div>
-      <div
-        className={streetControlClasses}
-      >
+      <div className={streetControlClasses}>
         <label htmlFor="street">Your street</label>
         <input type="text" id="street" ref={streetInputRef} />
         {!formInputsValidity.street && <p> Please enter a street name!</p>}
       </div>
-      <div
-        className={postalCodeControlClasses}
-      >
+      <div className={postalCodeControlClasses}>
         <label htmlFor="postal">Postal code</label>
         <input type="text" id="postal" ref={postalCodeInputRef} />
         {!formInputsValidity.postalCode && (
           <p>Postal code must have min 5 characters!</p>
         )}
       </div>
-      <div
-        className={cityControlClasses}
-      >
+      <div className={cityControlClasses}>
         <label htmlFor="city">Your city</label>
         <input type="text" id="city" ref={cityInputRef} />
         {!formInputsValidity.city && <p>Please enter a city name!</p>}
