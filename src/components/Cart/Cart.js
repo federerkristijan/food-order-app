@@ -7,7 +7,7 @@ import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
 const Cart = (props) => {
-  const [isCheckout, setIsCHeckout] = useState(false);
+  const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const cartCtx = useContext(CartContext);
 
@@ -23,7 +23,7 @@ const Cart = (props) => {
   };
 
   const orderHandler = () => {
-    setIsCHeckout(true);
+    setIsCheckout(true);
   };
 
   const submitOrderHandler = async (userData) => {
@@ -47,6 +47,7 @@ const Cart = (props) => {
         orderedItems: responseData.orderedItems
       })
     }
+    setIsSubmitting(false);
   };
 
   const cartItems = (
