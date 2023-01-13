@@ -8,6 +8,7 @@ import Checkout from "./Checkout";
 
 const Cart = (props) => {
   const [isCheckout, setIsCHeckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -25,8 +26,9 @@ const Cart = (props) => {
     setIsCHeckout(true);
   };
 
-  const submitOrderHandler = (userData) => {
-    fetch('https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
+  const submitOrderHandler = async (userData) => {
+    setIsSubmitting(true);
+    await fetch('https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
