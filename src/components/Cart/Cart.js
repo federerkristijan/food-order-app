@@ -28,13 +28,25 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch('https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
+    const response = await fetch('https://udemy-react-21466-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
         orderedItems: cartCtx.items
       })
     });
+    // v. 1
+    const responseData = await response.json();
+
+    const submittedOrder = [];
+
+    for (const key in responseData) {
+      submittedOrder.push({
+        id: key,
+        user: responseData.user,
+        orderedItems: responseData.orderedItems
+      })
+    }
   };
 
   const cartItems = (
