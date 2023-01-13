@@ -97,11 +97,14 @@ const Cart = (props) => {
     </Fragment>
   );
 
-  const isSubmittingModalContent = <p>PLacing your order...</p>
+  const isSubmittingModalContent = <p>Placing your order...</p>
+
+  const didSubmitModalContent = <p>Your order has been placed!</p>
 
   return <Modal onClose={props.onClose}>
     {!isSubmitting && CartModalContent}
     {isSubmitting && isSubmittingModalContent}
+    {didSubmit && didSubmitModalContent}
   </Modal>;
 };
 
