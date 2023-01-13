@@ -55,6 +55,11 @@ const cartReducer = (state, action) => {
     };
   }
 
+  // clearing the cart after the order was placed
+  if (action.type === 'CLEAR') {
+    return defaultCartState;
+  }
+
   return defaultCartState;
 };
 
