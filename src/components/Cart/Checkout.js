@@ -49,7 +49,8 @@ const Checkout = (props) => {
       return;
     }
 
-    // submit cart data
+    // calling prop from Cart.js
+    props.onSubmit();
   };
 
   const nameControlClasses = `${classes.control} ${
