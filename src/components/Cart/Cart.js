@@ -97,7 +97,12 @@ const Cart = (props) => {
     </Fragment>
   );
 
-  return <Modal onClose={props.onClose}></Modal>;
+  const isSubmittingModalContent = <p>PLacing your order...</p>
+
+  return <Modal onClose={props.onClose}>
+    {!isSubmitting && CartModalContent}
+    {isSubmitting && isSubmittingModalContent}
+  </Modal>;
 };
 
 export default Cart;
