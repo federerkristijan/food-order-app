@@ -50,7 +50,12 @@ const Checkout = (props) => {
     }
 
     // calling prop from Cart.js
-    props.onSubmit();
+    props.onSubmit({
+      name: enteredName,
+      street: enteredStreet,
+      postalCode: enteredPostalCode,
+      city: enteredCity
+    });
   };
 
   const nameControlClasses = `${classes.control} ${
