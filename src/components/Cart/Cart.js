@@ -99,12 +99,20 @@ const Cart = (props) => {
 
   const isSubmittingModalContent = <p>Placing your order...</p>
 
-  const didSubmitModalContent = <p>Your order has been placed!</p>
+  const didSubmitModalContent = (
+  <Fragment>
+    <p>Your order has been placed!</p>
+    <div className={classes.actions}>
+      <button className={classes.button} onClick={props.onClose}>
+        Close
+      </button>
+    </div>
+  </Fragment>)
 
   return <Modal onClose={props.onClose}>
-    {!isSubmitting && CartModalContent}
+    {!isSubmitting && !didSubmit && CartModalContent}
     {isSubmitting && isSubmittingModalContent}
-    {didSubmit && didSubmitModalContent}
+    {!isSubmitting && didSubmit && didSubmitModalContent}
   </Modal>;
 };
 
